@@ -161,8 +161,9 @@ def COSCIGAN(n_groups,
     torch.manual_seed(0)
 
     ##
+    df = pd.DataFrame()
     try:
-        with open('../Dataset/'+dataset+'.pkl', 'rb') as fh:
+        with open(f'../Dataset/{dataset}.pkl', 'rb') as fh:
             df = pickle.load(fh)
     except FileNotFoundError:
         with open('../Dataset/'+dataset+'.csv', 'rb') as fh:
