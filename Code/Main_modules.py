@@ -161,7 +161,7 @@ def COSCIGAN(n_groups,
     torch.manual_seed(0)
 
     ##
-    # df = pd.DataFrame()
+    df = pd.DataFrame()
     try:
         with open(f'../Dataset/{dataset}.pkl', 'rb') as fh:
             df = pickle.load(fh)
