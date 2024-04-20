@@ -162,14 +162,16 @@ def COSCIGAN(n_groups,
 
     ##
     df = pd.DataFrame()
-    try:
-        with open(f'../Dataset/{dataset}.pkl', 'rb') as fh:
+    with open(f'../Dataset/{dataset}.pkl', 'rb') as fh:
             df = pickle.load(fh)
-    except FileNotFoundError:
-        with open('../Dataset/'+dataset+'.csv', 'rb') as fh:
-            df = pd.read_csv(fh)
-    except:
-        print("The dataset is not available")
+    # try:
+    #     with open(f'../Dataset/{dataset}.pkl', 'rb') as fh:
+    #         df = pickle.load(fh)
+    # except FileNotFoundError:
+    #     with open('../Dataset/'+dataset+'.csv', 'rb') as fh:
+    #         df = pd.read_csv(fh)
+    # except:
+    #     print("The dataset is not available")
 
 
     ##
