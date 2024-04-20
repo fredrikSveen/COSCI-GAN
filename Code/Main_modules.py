@@ -163,7 +163,7 @@ def COSCIGAN(n_groups,
     ##
     df = pd.DataFrame()
     with open(f'../Dataset/{dataset}.pkl', 'rb') as fh:
-            df = pickle.load(fh)
+        df = pickle.load(fh)
     # try:
     #     with open(f'../Dataset/{dataset}.pkl', 'rb') as fh:
     #         df = pickle.load(fh)
