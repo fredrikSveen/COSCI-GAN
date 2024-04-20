@@ -137,6 +137,7 @@ def COSCIGAN(n_groups,
     temp_name += '_LSTM_D' if LSTM_D else '_MLP_D'
     temp_name += '_CD_type_' + CD_type
     full_name = f'{name}_{temp_name}_{n_groups}_{int(real_data_fraction*100)}_{id}_{expId}_{dataset}_{num_epochs}_{batch_size}_{n_samples}_{criterion}_gamma_{gamma_value}_Glr_{generator_lr}_Dlr_{discriminator_lr}_CDlr_{central_discriminator_lr}_noiselen_{noise_len}'
+    print(f'Full name: {full_name}')
 
     try:
         if not os.path.isdir('../Results/'):
@@ -155,6 +156,7 @@ def COSCIGAN(n_groups,
         pass
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    print(f'Device: {device}')
 
     torch.manual_seed(0)
 
@@ -210,6 +212,7 @@ def COSCIGAN(n_groups,
         discriminators[i] = nn.DataParallel(discriminators[i]).to(device)
         discriminators[i].to(device)  
     ##
+    print(f'Discriminators initialized')
 
     generators = {}
     if LSTM_G:
@@ -223,6 +226,8 @@ def COSCIGAN(n_groups,
     for i in range(n_groups):
         generators[i] = nn.DataParallel(generators[i])
         generators[i].to(device)
+
+    print(f'Generators initialized')
 
     ##
 
@@ -259,8 +264,9 @@ def COSCIGAN(n_groups,
         optimizer_central_discriminator = torch.optim.Adam(central_discriminator.parameters(), lr=central_discriminator_lr, betas=[0.5, 0.9])
 
     ##
-
+    print(f'Starting training process')
     for epoch in range(num_epochs):
+        print(f'Epoch {epoch}/{num_epochs}')
         for n, (signals, ID) in enumerate(train_loader):
             signals = signals.to(device)
             n_signals = len(signals)
