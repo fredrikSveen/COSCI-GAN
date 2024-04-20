@@ -163,10 +163,10 @@ def COSCIGAN(n_groups,
     ##
     try:
         with open('../Dataset/'+dataset+'.pkl', 'rb') as fh:
-            df = pd.read_csv(fh)
-    except FileNotFoundError:
-        with open('../Dataset/'+dataset+'.pkl', 'rb') as fh:
             df = pickle.load(fh)
+    except FileNotFoundError:
+        with open('../Dataset/'+dataset+'.csv', 'rb') as fh:
+            df = pd.read_csv(fh)
     except:
         print("The dataset is not available")
 
